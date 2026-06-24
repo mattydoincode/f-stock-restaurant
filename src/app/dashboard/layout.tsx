@@ -20,6 +20,16 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+	const isPreview = pathname === "/dashboard/preview";
+
+	if (isPreview) {
+		return (
+			<div className="flex flex-1 flex-col">
+				{children}
+				<Toaster/>
+			</div>
+		);
+	}
 
   return (
     <div className="flex flex-1">
