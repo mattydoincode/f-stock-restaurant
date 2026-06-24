@@ -22,6 +22,15 @@ export async function getRestaurant(): Promise<RestaurantResponse> {
 	return toResponse(restaurant as unknown as Record<string, unknown>);
 }
 
+export async function getRestaurantBySlug(slug: string): Promise<RestaurantResponse> {
+	const prisma = getPrisma();
+	const restaurant = await prisma.restaurant.findFirst({where: {slug}});
+	if (!restaurant || !(restaurant as unknown as Record<string, unknown>).published) {
+		throw new NotFoundError("Restaurant not found");
+	}
+	return toResponse(restaurant as unknown as Record<string, unknown>);
+}
+
 export async function createRestaurant(data: RestaurantInput): Promise<RestaurantResponse> {
 	const prisma = getPrisma();
 
