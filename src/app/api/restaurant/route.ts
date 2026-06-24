@@ -1,15 +1,7 @@
 import {NextResponse} from "next/server";
-import {AppError} from "@/lib/errors";
+import {errorResponse} from "@/lib/api-utils";
 import {createRestaurant, getRestaurant, updateRestaurant,} from "@/services/restaurant.service";
 import type {RestaurantInput, RestaurantUpdate} from "@/types/restaurant";
-
-function errorResponse(error: unknown): NextResponse {
-	if (error instanceof AppError) {
-		return NextResponse.json({error: error.message}, {status: error.statusCode});
-	}
-	console.error("Unexpected error:", error);
-	return NextResponse.json({error: "Internal server error"}, {status: 500});
-}
 
 export async function GET() {
 	try {

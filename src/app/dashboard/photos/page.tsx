@@ -76,6 +76,7 @@ export default function PhotosPage() {
 										  size="icon"
 										  className="h-7 w-7"
 										  onClick={() => gallery.removeGalleryImage(idx)}
+										  aria-label="Remove image"
 									  >
 										  <X className="h-3.5 w-3.5"/>
 									  </Button>

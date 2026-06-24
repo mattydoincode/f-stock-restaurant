@@ -25,6 +25,7 @@ export function ReorderButtons({
 				className="h-6 w-6"
 				disabled={isFirst}
 				onClick={onMoveUp}
+				aria-label="Move up"
 			>
 				<ChevronUp className="h-3.5 w-3.5"/>
 			</Button>
@@ -35,6 +36,7 @@ export function ReorderButtons({
 				className="h-6 w-6"
 				disabled={isLast}
 				onClick={onMoveDown}
+				aria-label="Move down"
 			>
 				<ChevronDown className="h-3.5 w-3.5"/>
 			</Button>

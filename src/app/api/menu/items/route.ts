@@ -1,15 +1,7 @@
 import {NextRequest, NextResponse} from "next/server";
-import {AppError} from "@/lib/errors";
+import {errorResponse, parseIdParam} from "@/lib/api-utils";
 import {createItem, deleteItem, updateItem} from "@/services/menu.service";
 import type {ItemInput, ItemUpdate} from "@/types/menu";
-
-function errorResponse(error: unknown): NextResponse {
-	if (error instanceof AppError) {
-		return NextResponse.json({error: error.message}, {status: error.statusCode});
-	}
-	console.error("Unexpected error:", error);
-	return NextResponse.json({error: "Internal server error"}, {status: 500});
-}
 
 export async function POST(request: Request) {
 	try {
@@ -35,9 +27,9 @@ export async function PUT(request: Request) {
 
 export async function DELETE(request: NextRequest) {
 	try {
-		const id = Number(request.nextUrl.searchParams.get("id"));
+		const id = parseIdParam(request.nextUrl.searchParams.get("id"));
 		if (!id) {
-			return NextResponse.json({error: "Missing id parameter"}, {status: 400});
+			return NextResponse.json({error: "Missing or invalid id parameter"}, {status: 400});
 		}
 		await deleteItem(id);
 		return NextResponse.json({deleted: true});

@@ -3,6 +3,17 @@ import {slugify} from "@/lib/slugify";
 import {ConflictError, NotFoundError, ValidationError} from "@/lib/errors";
 import type {RestaurantInput, RestaurantResponse, RestaurantUpdate, WeeklyHours,} from "@/types/restaurant";
 
+const ALLOWED_EMBED_PREFIXES = [
+	"https://www.google.com/maps/embed",
+	"https://maps.google.com/maps",
+];
+
+function validateMapEmbed(url: string): void {
+	if (url && !ALLOWED_EMBED_PREFIXES.some((prefix) => url.startsWith(prefix))) {
+		throw new ValidationError("Map embed URL must be a Google Maps embed URL");
+	}
+}
+
 function toResponse(row: Record<string, unknown>): RestaurantResponse {
 	return {
 		...(row as Omit<RestaurantResponse, "hours" | "galleryImages" | "createdAt" | "updatedAt">),
@@ -37,6 +48,7 @@ export async function createRestaurant(data: RestaurantInput): Promise<Restauran
 	if (!data.name?.trim()) {
 		throw new ValidationError("Restaurant name is required");
 	}
+	if (data.mapEmbed) validateMapEmbed(data.mapEmbed);
 
 	const existing = await prisma.restaurant.findFirst();
 	if (existing) {
@@ -89,7 +101,10 @@ export async function updateRestaurant(data: RestaurantUpdate): Promise<Restaura
 	if (data.phone !== undefined) updateData.phone = data.phone;
 	if (data.email !== undefined) updateData.email = data.email;
 	if (data.address !== undefined) updateData.address = data.address;
-	if (data.mapEmbed !== undefined) updateData.mapEmbed = data.mapEmbed;
+	if (data.mapEmbed !== undefined) {
+		if (data.mapEmbed) validateMapEmbed(data.mapEmbed);
+		updateData.mapEmbed = data.mapEmbed;
+	}
 	if (data.hours !== undefined) updateData.hours = JSON.stringify(data.hours);
 	if (data.theme !== undefined) updateData.theme = data.theme;
 	if (data.colorScheme !== undefined) updateData.colorScheme = data.colorScheme;

@@ -1,6 +1,6 @@
 "use client";
 
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import {useSaveIndicator} from "./use-save-indicator";
 import type {ItemInput, ItemUpdate, MenuItemResponse, MenuSectionResponse, SectionInput, SectionUpdate,} from "@/types/menu";
 
@@ -8,6 +8,8 @@ export function useMenu() {
 	const [sections, setSections] = useState<MenuSectionResponse[]>([]);
 	const [loading, setLoading] = useState(true);
 	const saveIndicator = useSaveIndicator();
+	const sectionsRef = useRef(sections);
+	sectionsRef.current = sections;
 
 	const fetchMenu = useCallback(async () => {
 		try {
@@ -169,67 +171,60 @@ export function useMenu() {
 
 	const moveSectionUp = useCallback(
 		async (sectionId: number) => {
-			const idx = sections.findIndex((s) => s.id === sectionId);
+			const curr = sectionsRef.current;
+			const idx = curr.findIndex((s) => s.id === sectionId);
 			if (idx <= 0) return;
-			const current = sections[idx];
-			const above = sections[idx - 1];
-			// Swap sortOrder values
 			await Promise.all([
-				updateSection({id: current.id, sortOrder: above.sortOrder}),
-				updateSection({id: above.id, sortOrder: current.sortOrder}),
+				updateSection({id: curr[idx].id, sortOrder: curr[idx - 1].sortOrder}),
+				updateSection({id: curr[idx - 1].id, sortOrder: curr[idx].sortOrder}),
 			]);
 			await fetchMenu();
 		},
-		[sections, updateSection, fetchMenu],
+		[updateSection, fetchMenu],
 	);
 
 	const moveSectionDown = useCallback(
 		async (sectionId: number) => {
-			const idx = sections.findIndex((s) => s.id === sectionId);
-			if (idx < 0 || idx >= sections.length - 1) return;
-			const current = sections[idx];
-			const below = sections[idx + 1];
+			const curr = sectionsRef.current;
+			const idx = curr.findIndex((s) => s.id === sectionId);
+			if (idx < 0 || idx >= curr.length - 1) return;
 			await Promise.all([
-				updateSection({id: current.id, sortOrder: below.sortOrder}),
-				updateSection({id: below.id, sortOrder: current.sortOrder}),
+				updateSection({id: curr[idx].id, sortOrder: curr[idx + 1].sortOrder}),
+				updateSection({id: curr[idx + 1].id, sortOrder: curr[idx].sortOrder}),
 			]);
 			await fetchMenu();
 		},
-		[sections, updateSection, fetchMenu],
+		[updateSection, fetchMenu],
 	);
 
 	const moveItemUp = useCallback(
 		async (sectionId: number, itemId: number) => {
-			const section = sections.find((s) => s.id === sectionId);
+			const section = sectionsRef.current.find((s) => s.id === sectionId);
 			if (!section) return;
 			const idx = section.items.findIndex((i) => i.id === itemId);
 			if (idx <= 0) return;
-			const current = section.items[idx];
-			const above = section.items[idx - 1];
 			await Promise.all([
-				updateItem(sectionId, {id: current.id, sortOrder: above.sortOrder}),
-				updateItem(sectionId, {id: above.id, sortOrder: current.sortOrder}),
+				updateItem(sectionId, {id: section.items[idx].id, sortOrder: section.items[idx - 1].sortOrder}),
+				updateItem(sectionId, {id: section.items[idx - 1].id, sortOrder: section.items[idx].sortOrder}),
 			]);
 			await fetchMenu();
 		},
-		[sections, updateItem, fetchMenu],
+		[updateItem, fetchMenu],
 	);
 
 	const moveItemDown = useCallback(
 		async (sectionId: number, itemId: number) => {
-			const section = sections.find((s) => s.id === sectionId);
+			const section = sectionsRef.current.find((s) => s.id === sectionId);
 			if (!section) return;
 			const idx = section.items.findIndex((i) => i.id === itemId);
 			if (idx < 0 || idx >= section.items.length - 1) return;
-			const current = section.items[idx];
-			const below = section.items[idx + 1];
 			await Promise.all([
-				updateItem(sectionId, {id: current.id, sortOrder: below.sortOrder}),
-				updateItem(sectionId, {id: below.id, sortOrder: current.sortOrder}),
+				updateItem(sectionId, {id: section.items[idx].id, sortOrder: section.items[idx + 1].sortOrder}),
+				updateItem(sectionId, {id: section.items[idx + 1].id, sortOrder: section.items[idx].sortOrder}),
 			]);
 			await fetchMenu();
 		},
-		[sections, updateItem, fetchMenu],
+		[updateItem, fetchMenu],
 	);
 
 	return {

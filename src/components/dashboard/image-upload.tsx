@@ -2,6 +2,7 @@
 
 import {useRef, useState} from "react";
 import {Loader2, Upload, X} from "lucide-react";
+import {toast} from "sonner";
 import {Button} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
 
@@ -39,7 +40,7 @@ export function ImageUpload({
 			onUpload(url);
 		}
 		catch (err) {
-			console.error("Upload failed:", err);
+			toast.error(err instanceof Error ? err.message : "Upload failed");
 		}
 		finally {
 			setUploading(false);
