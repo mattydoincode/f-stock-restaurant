@@ -102,15 +102,13 @@ published sites.
 
 ## npm Scripts
 
-| Script              | Purpose                                        |
-|---------------------|------------------------------------------------|
-| `npm run dev`       | Start dev server                               |
-| `npm run build`     | Production build                               |
-| `npm run start`     | Start production server                        |
-| `npm run clean`     | Remove dist/                                   |
-| `npm run fullclean` | Remove dist/, node_modules/, package-lock.json |
-
-> **JetBrains users**: Scripts suffixed with `:claude` (e.g. `npm run dev:claude`) use a hardcoded nvm Node path to work around the JetBrains sandbox Node. Update the paths in `package.json` if your nvm installation differs.
+| Script              | Purpose                                         |
+|---------------------|-------------------------------------------------|
+| `npm run dev`       | Start dev server                                |
+| `npm run build`     | Production build                                |
+| `npm run start`     | Start production server                         |
+| `npm run clean`     | Remove .next/                                   |
+| `npm run fullclean` | Remove .next/, node_modules/, package-lock.json |
 
 ## Database
 

@@ -60,7 +60,7 @@ These are the features 90%+ of diners expect on any restaurant website.
 
 8. **Online ordering** — Pickup/delivery ordering with cart and checkout
 9. **Reservation system** — Table booking with date/time/party-size selection
-10. **SEO fundamentals** — Text-based menus (not PDF), meta tags, structured data (schema.org/Restaurant)
+10. **SEO fundamentals** ✅ — Text-based menus (not PDF), meta tags, structured data (schema.org/Restaurant). *Implemented: JSON-LD, OpenGraph/Twitter meta, sitemap.xml, robots.txt.*
 
 ### Tier 3 — Differentiators (future)
 
