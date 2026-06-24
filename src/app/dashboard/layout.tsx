@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
+import {usePathname} from "next/navigation";
+import {cn} from "@/lib/utils";
+import {Toaster} from "@/components/ui/sonner";
 
 const navItems = [
   { href: "/dashboard", label: "Overview" },
@@ -46,6 +47,7 @@ export default function DashboardLayout({
         </nav>
       </aside>
       <main className="flex-1 p-6">{children}</main>
+	    <Toaster/>
     </div>
   );
 }

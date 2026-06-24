@@ -210,7 +210,7 @@ npm install @prisma/client
 npx prisma init --datasource-provider sqlite
 ```
 
-This creates `prisma/schema.prisma` and `.env` with `DATABASE_URL="file:./dev.db"`.
+This creates `prisma/schema.prisma` and `.env` with `DATABASE_URL="file:./prisma/dev.db"`.
 
 ### Step 4: Install shadcn/ui
 
@@ -218,7 +218,7 @@ This creates `prisma/schema.prisma` and `.env` with `DATABASE_URL="file:./dev.db
 npx shadcn@latest init
 ```
 
-Accept defaults (New York style, Tailwind CSS, `@/components` path). Then install components as needed:
+Accept defaults (base-nova style, Tailwind CSS, `@/components` path). Then install components as needed:
 
 ```bash
 npx shadcn@latest add button input label card tabs textarea select dialog

@@ -9,3 +9,55 @@ generator client {
 datasource db {
   provider = "sqlite"
 }
+
+model Restaurant {
+  id            Int      @id @default(autoincrement())
+  name          String
+  slug          String   @unique
+  cuisine       String   @default("")
+  description   String   @default("")
+  logo          String   @default("")
+  heroImage     String   @default("")
+  phone         String   @default("")
+  email         String   @default("")
+  address       String   @default("")
+  mapEmbed      String   @default("")
+  hours         String   @default("{}") // JSON: Record<string, { open: string; close: string }>
+  theme         String   @default("bistro")
+  colorScheme   String   @default("default")
+  published     Boolean  @default(false)
+  galleryImages String   @default("[]") // JSON: string[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  menuSections MenuSection[]
+}
+
+model MenuSection {
+  id           Int      @id @default(autoincrement())
+  name         String
+  description  String   @default("")
+  sortOrder    Int      @default(0)
+  restaurantId Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  items      MenuItem[]
+}
+
+model MenuItem {
+  id            Int      @id @default(autoincrement())
+  name          String
+  description   String   @default("")
+  price         Float
+  image         String   @default("")
+  dietaryTags   String   @default("[]") // JSON: string[]
+  sortOrder     Int      @default(0)
+  available     Boolean  @default(true)
+  menuSectionId Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  section MenuSection @relation(fields: [menuSectionId], references: [id], onDelete: Cascade)
+}
