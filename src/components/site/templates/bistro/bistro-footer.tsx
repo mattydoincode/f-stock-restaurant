@@ -12,9 +12,9 @@ export function BistroFooter({name, phone, email, address}: BistroFooterProps) {
 		<footer className="border-t border-neutral-800 bg-neutral-950 px-4 py-12">
 			<div className="mx-auto max-w-4xl">
 				<div className="text-center">
-					<h3 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white">
+					<p className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-white">
 						{name}
-					</h3>
+					</p>
 					<div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm text-neutral-400">
 						{phone && (
 							<a

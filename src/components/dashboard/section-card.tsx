@@ -190,7 +190,7 @@ export function SectionCard({
 							}}
 						/>
 					</div>
-					<Button type="button" size="sm" onClick={handleAddItem} disabled={!newItemName.trim()}>
+					<Button type="button" size="sm" onClick={handleAddItem} disabled={!newItemName.trim()} aria-label="Add item">
 						<Plus className="mr-1 h-4 w-4"/>
 						Add
 					</Button>

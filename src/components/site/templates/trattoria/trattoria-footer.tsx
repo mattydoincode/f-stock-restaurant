@@ -11,9 +11,9 @@ export function TrattoriaFooter({name, phone, email, address}: TrattoriaFooterPr
 	return (
 		<footer className="bg-amber-900 px-4 py-12 text-amber-100">
 			<div className="mx-auto max-w-4xl text-center">
-				<h3 className="font-[family-name:var(--font-caveat)] text-3xl text-white">
+				<p className="font-[family-name:var(--font-caveat)] text-3xl text-white">
 					{name}
-				</h3>
+				</p>
 				<div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm">
 					{phone && (
 						<a

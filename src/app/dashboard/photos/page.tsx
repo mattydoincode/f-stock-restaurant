@@ -70,7 +70,7 @@ export default function PhotosPage() {
 										  className="h-full w-full object-cover"
 									  />
 								  </div>
-								  <div className="absolute right-1 top-1 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+								  <div className="absolute right-1 top-1 flex gap-1 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
 									  <Button
 										  variant="destructive"
 										  size="icon"
@@ -81,7 +81,7 @@ export default function PhotosPage() {
 										  <X className="h-3.5 w-3.5"/>
 									  </Button>
 								  </div>
-								  <div className="absolute bottom-1 right-1 opacity-0 transition-opacity group-hover:opacity-100">
+								  <div className="absolute bottom-1 right-1 opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100">
 									  <div className="rounded bg-background/80 p-0.5">
 										  <ReorderButtons
 											  onMoveUp={() => gallery.moveGalleryImageUp(idx)}

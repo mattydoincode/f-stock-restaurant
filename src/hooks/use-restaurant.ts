@@ -55,6 +55,11 @@ export function useRestaurant() {
 		}
 	}, [saveToApi]);
 
+	// Flush pending saves when the component unmounts (e.g. user navigates away)
+	const flushRef = useRef(flushSave);
+	flushRef.current = flushSave;
+	useEffect(() => () => flushRef.current(), []);
+
 	const updateField = useCallback(
 		<K extends keyof RestaurantUpdate>(field: K, value: RestaurantUpdate[K]) => {
 			// Optimistically update local state

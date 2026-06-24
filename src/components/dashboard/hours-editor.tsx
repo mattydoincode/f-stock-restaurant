@@ -48,6 +48,7 @@ export function HoursEditor({hours, onChange}: HoursEditorProps) {
 							{capitalize(day)}
 						</Label>
 						<Switch
+							aria-label={`Toggle ${capitalize(day)}`}
 							checked={isOpen}
 							onCheckedChange={(checked) => {
 								if (checked) {
