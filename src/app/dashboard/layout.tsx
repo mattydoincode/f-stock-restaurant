@@ -4,6 +4,7 @@ import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {cn} from "@/lib/utils";
 import {Toaster} from "@/components/ui/sonner";
+import {MobileNav} from "@/components/dashboard/mobile-nav";
 
 const navItems = [
   { href: "/dashboard", label: "Overview" },
@@ -32,8 +33,9 @@ export default function DashboardLayout({
 	}
 
   return (
-    <div className="flex flex-1">
-      <aside className="w-56 shrink-0 border-r bg-muted/40">
+	  <div className="flex flex-1 flex-col md:flex-row">
+		  <MobileNav/>
+		  <aside className="hidden w-56 shrink-0 border-r bg-muted/40 md:block">
         <div className="p-4">
           <Link href="/" className="text-lg font-semibold">
             Goethena
@@ -56,7 +58,7 @@ export default function DashboardLayout({
           ))}
         </nav>
       </aside>
-      <main className="flex-1 p-6">{children}</main>
+		  <main className="flex-1 p-4 md:p-6">{children}</main>
 	    <Toaster/>
     </div>
   );

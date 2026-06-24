@@ -1,6 +1,8 @@
 "use client";
 
+import {useEffect} from "react";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
 import {useRestaurant} from "@/hooks/use-restaurant";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle,} from "@/components/ui/card";
 import {buttonVariants} from "@/components/ui/button";
@@ -15,9 +17,16 @@ interface ChecklistItem {
 }
 
 export default function DashboardPage() {
+	const router = useRouter();
 	const {restaurant, loading} = useRestaurant();
 
-	if (loading) {
+	useEffect(() => {
+		if (!loading && !restaurant) {
+			router.replace("/dashboard/onboarding");
+		}
+	}, [loading, restaurant, router]);
+
+	if (loading || !restaurant) {
 		return (
 			<div className="flex items-center justify-center py-12 text-muted-foreground">
 				Loading...
@@ -25,7 +34,7 @@ export default function DashboardPage() {
 		);
 	}
 
-	const hasName = !!restaurant?.name;
+	const hasName = !!restaurant.name;
 	const hasHours =
 		restaurant?.hours && Object.keys(restaurant.hours).length > 0;
 	const hasPhotos =
