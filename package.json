@@ -10,7 +10,7 @@
 		"start": "next start",
 		"seed": "tsx prisma/seed.ts",
 		"test": "npx playwright test",
-		"test:ui": "npx playwright test --ui"
+		"test:ui": "PLAYWRIGHT_UI=1 npx playwright test --ui"
 	},
 	"prisma": {
 		"seed": "npx tsx prisma/seed.ts"

@@ -1,5 +1,7 @@
 import {defineConfig, devices} from "@playwright/test";
 
+const isUI = !!process.env.PLAYWRIGHT_UI;
+
 export default defineConfig({
 	testDir: "./e2e",
 	fullyParallel: false,
@@ -9,7 +11,9 @@ export default defineConfig({
 	reporter: "html",
 	use: {
 		baseURL: "http://localhost:3000",
-		trace: "on-first-retry",
+		trace: isUI ? "on" : "retain-on-failure",
+		screenshot: isUI ? "on" : "only-on-failure",
+		video: isUI ? "on" : "retain-on-failure",
 	},
 	projects: [
 		{
