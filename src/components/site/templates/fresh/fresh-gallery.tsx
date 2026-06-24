@@ -2,9 +2,10 @@ import Image from "next/image";
 
 interface FreshGalleryProps {
 	images: string[];
+	name: string;
 }
 
-export function FreshGallery({images}: FreshGalleryProps) {
+export function FreshGallery({images, name}: FreshGalleryProps) {
 	if (images.length === 0) return null;
 
 	return (
@@ -21,7 +22,7 @@ export function FreshGallery({images}: FreshGalleryProps) {
 						>
 							<Image
 								src={url}
-								alt={`Gallery ${idx + 1}`}
+								alt={`${name} - photo ${idx + 1}`}
 								fill
 								className="object-cover"
 								sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"

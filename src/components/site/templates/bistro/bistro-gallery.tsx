@@ -2,9 +2,10 @@ import Image from "next/image";
 
 interface BistroGalleryProps {
 	images: string[];
+	name: string;
 }
 
-export function BistroGallery({images}: BistroGalleryProps) {
+export function BistroGallery({images, name}: BistroGalleryProps) {
 	if (images.length === 0) return null;
 
 	return (
@@ -21,9 +22,9 @@ export function BistroGallery({images}: BistroGalleryProps) {
 						>
 							<Image
 								src={url}
-								alt={`Gallery ${idx + 1}`}
+								alt={`${name} - photo ${idx + 1}`}
 								fill
-								className="object-cover transition-transform duration-500 hover:scale-105"
+								className="object-cover transition-transform duration-500 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none"
 								sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
 							/>
 						</div>

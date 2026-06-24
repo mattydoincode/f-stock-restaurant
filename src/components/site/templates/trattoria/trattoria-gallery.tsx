@@ -2,9 +2,10 @@ import Image from "next/image";
 
 interface TrattoriaGalleryProps {
 	images: string[];
+	name: string;
 }
 
-export function TrattoriaGallery({images}: TrattoriaGalleryProps) {
+export function TrattoriaGallery({images, name}: TrattoriaGalleryProps) {
 	if (images.length === 0) return null;
 
 	return (
@@ -21,7 +22,7 @@ export function TrattoriaGallery({images}: TrattoriaGalleryProps) {
 						>
 							<Image
 								src={url}
-								alt={`Gallery ${idx + 1}`}
+								alt={`${name} - photo ${idx + 1}`}
 								fill
 								className="object-cover"
 								sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

@@ -24,7 +24,7 @@ export function TrattoriaMenu({sections}: TrattoriaMenuProps) {
 								{section.name}
 							</h3>
 							{section.description && (
-								<p className="mb-6 text-sm text-stone-500">
+								<p className="mb-6 text-sm text-stone-600">
 									{section.description}
 								</p>
 							)}
@@ -58,7 +58,7 @@ export function TrattoriaMenu({sections}: TrattoriaMenuProps) {
                           </span>
 												</div>
 												{item.description && (
-													<p className="mt-1 text-sm text-stone-500">
+													<p className="mt-1 text-sm text-stone-600">
 														{item.description}
 													</p>
 												)}

@@ -9,19 +9,21 @@ import {BistroFooter} from "./bistro-footer";
 export function BistroTemplate({restaurant, menu, colorVars}: TemplateProps) {
 	return (
 		<div style={colorVars} className="bg-neutral-950 text-white">
-			<BistroHero
-				name={restaurant.name}
-				cuisine={restaurant.cuisine}
-				heroImage={restaurant.heroImage}
-			/>
-			<BistroAbout description={restaurant.description}/>
-			<BistroMenu sections={menu}/>
-			<BistroGallery images={restaurant.galleryImages}/>
-			<BistroHours
-				hours={restaurant.hours}
-				address={restaurant.address}
-				mapEmbed={restaurant.mapEmbed}
-			/>
+			<main id="main-content">
+				<BistroHero
+					name={restaurant.name}
+					cuisine={restaurant.cuisine}
+					heroImage={restaurant.heroImage}
+				/>
+				<BistroAbout description={restaurant.description}/>
+				<BistroMenu sections={menu}/>
+				<BistroGallery images={restaurant.galleryImages} name={restaurant.name}/>
+				<BistroHours
+					hours={restaurant.hours}
+					address={restaurant.address}
+					mapEmbed={restaurant.mapEmbed}
+				/>
+			</main>
 			<BistroFooter
 				name={restaurant.name}
 				phone={restaurant.phone}

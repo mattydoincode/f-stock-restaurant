@@ -24,7 +24,7 @@ export function FreshMenu({sections}: FreshMenuProps) {
 								{section.name}
 							</h3>
 							{section.description && (
-								<p className="mb-6 text-sm text-gray-500">
+								<p className="mb-6 text-sm text-gray-600">
 									{section.description}
 								</p>
 							)}
@@ -57,7 +57,7 @@ export function FreshMenu({sections}: FreshMenuProps) {
                         </span>
 											</div>
 											{item.description && (
-												<p className="mt-1 text-sm text-gray-500">
+												<p className="mt-1 text-sm text-gray-600">
 													{item.description}
 												</p>
 											)}

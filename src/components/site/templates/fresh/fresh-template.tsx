@@ -9,19 +9,21 @@ import {FreshFooter} from "./fresh-footer";
 export function FreshTemplate({restaurant, menu, colorVars}: TemplateProps) {
 	return (
 		<div style={colorVars} className="bg-white text-gray-900">
-			<FreshHero
-				name={restaurant.name}
-				cuisine={restaurant.cuisine}
-				heroImage={restaurant.heroImage}
-			/>
-			<FreshAbout description={restaurant.description}/>
-			<FreshMenu sections={menu}/>
-			<FreshGallery images={restaurant.galleryImages}/>
-			<FreshHours
-				hours={restaurant.hours}
-				address={restaurant.address}
-				mapEmbed={restaurant.mapEmbed}
-			/>
+			<main id="main-content">
+				<FreshHero
+					name={restaurant.name}
+					cuisine={restaurant.cuisine}
+					heroImage={restaurant.heroImage}
+				/>
+				<FreshAbout description={restaurant.description}/>
+				<FreshMenu sections={menu}/>
+				<FreshGallery images={restaurant.galleryImages} name={restaurant.name}/>
+				<FreshHours
+					hours={restaurant.hours}
+					address={restaurant.address}
+					mapEmbed={restaurant.mapEmbed}
+				/>
+			</main>
 			<FreshFooter
 				name={restaurant.name}
 				phone={restaurant.phone}

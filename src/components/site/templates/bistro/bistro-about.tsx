@@ -10,9 +10,9 @@ export function BistroAbout({description}: BistroAboutProps) {
 			<div className="mx-auto max-w-2xl text-center">
 				<div className="mb-6 flex items-center justify-center gap-4">
 					<span className="h-px w-12 bg-[var(--site-accent)]"/>
-					<span className="text-xs tracking-[0.3em] uppercase text-neutral-400">
+					<h2 className="text-xs tracking-[0.3em] uppercase text-neutral-300">
             Our Story
-          </span>
+					</h2>
 					<span className="h-px w-12 bg-[var(--site-accent)]"/>
 				</div>
 				<p className="font-[family-name:var(--font-playfair)] text-lg leading-relaxed text-neutral-300">

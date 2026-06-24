@@ -25,7 +25,7 @@ export function BistroMenu({sections}: BistroMenuProps) {
 									{section.name}
 								</h3>
 								{section.description && (
-									<p className="mt-2 text-sm text-neutral-400">
+									<p className="mt-2 text-sm text-neutral-300">
 										{section.description}
 									</p>
 								)}
@@ -60,7 +60,7 @@ export function BistroMenu({sections}: BistroMenuProps) {
                           </span>
 												</div>
 												{item.description && (
-													<p className="mt-1 text-sm text-neutral-400">
+													<p className="mt-1 text-sm text-neutral-300">
 														{item.description}
 													</p>
 												)}
@@ -70,7 +70,7 @@ export function BistroMenu({sections}: BistroMenuProps) {
 															<DietaryBadge
 																key={tag}
 																tag={tag}
-																className="border border-neutral-700 text-neutral-400"
+																className="border border-neutral-700 text-neutral-300"
 															/>
 														))}
 													</div>
