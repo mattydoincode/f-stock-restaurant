@@ -1,6 +1,8 @@
 import type {MetadataRoute} from "next";
 import {getPrisma} from "@/lib/prisma";
 
+export const dynamic = 'force-dynamic';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const prisma = getPrisma();
 	const restaurants = await prisma.restaurant.findMany({
@@ -16,3 +18,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		})),
 	];
 }
+
